@@ -43,12 +43,17 @@ public class CriteriaImpl implements Criteria {
 		// apply group by
 		if (this.groupBy != null) 
 			groups = this.groupBy.group(results);
+		else
+			{/** TODO */ }
 			
 		// project 
-		List<Map<String, Object>> notOrderedList = new GroupResultProjector().project(groups, projections);
+		List<Map<String, Object>> list = new GroupResultProjector().project(groups, projections);
 		
-		
-		return null;
+		// order if exist
+		if (this.orderBy != null) 
+			return this.orderBy.order(list);
+		 else
+			return list;
 	}
 
 	@Override
