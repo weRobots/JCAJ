@@ -48,8 +48,8 @@ public class InnerJoin implements Join {
 				for (Map<String, Object> rhsRecord : rhsEntry.getValue()) {
 					for (Map<String, Object> lhsRecord : lhsRecords) {
 						lhsRecord.putAll(rhsRecord);
-						lhsRecord.put(c.getTable() + "." + this.propertyL, rhsEntry.getValue());
-						lhsRecord.put(this.table + "." + this.propertyR, rhsEntry.getValue());
+						lhsRecord.put(c.getTable() + "." + this.propertyL, rhsEntry.getKey());
+						lhsRecord.put(this.table + "." + this.propertyR, rhsEntry.getKey());
 						mergeResults.add(lhsRecord);
 					}
 				}

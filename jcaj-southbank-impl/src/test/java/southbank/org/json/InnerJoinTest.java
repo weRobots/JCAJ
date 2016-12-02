@@ -33,12 +33,17 @@ public class InnerJoinTest {
 			Assert.assertTrue(map.containsKey("t1f10.x"));
 			Assert.assertTrue(map.containsKey("t1f10.y"));
 			Assert.assertTrue(map.containsKey("t1f10.z"));
+			Assert.assertTrue(map.get("t1f10.z") instanceof Double);
 
 			// t2 properties
 			Assert.assertTrue(map.containsKey("t2f10._id"));
 			Assert.assertTrue(map.containsKey("t2f10.y"));
 			Assert.assertTrue(map.containsKey("t2f10.z"));
+			Assert.assertTrue(map.get("t1f10.z") instanceof Double);
 			Assert.assertTrue(map.containsKey("t2f10.zz"));
+
+			// keys equal
+			Assert.assertEquals(map.get("t1f10.z"), map.get("t1f10.z"));
 
 		}
 	}
