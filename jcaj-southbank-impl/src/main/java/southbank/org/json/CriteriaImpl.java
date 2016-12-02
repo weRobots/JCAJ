@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-
 import southbank.org.json.util.RestrictionFilter;
-import southbank.org.json.util.TableReader;
 
 public class CriteriaImpl implements Criteria {
 
@@ -31,28 +28,32 @@ public class CriteriaImpl implements Criteria {
 		// if join exist get intersect by joining two tables
 		if (this.join != null)
 			results = this.join.join(this);
-		else
-			results = new TableReader().fullRead(this.table);
+		else {
+			results = null;
+			/** TODO */
+		}
 
 		// apply given restrictions
 		results = new RestrictionFilter().filter(results, this.restrictions);
-		
+
 		// groups if defined
 		List<GroupResult> groups;
-		
+
 		// apply group by
-		if (this.groupBy != null) 
+		if (this.groupBy != null)
 			groups = this.groupBy.group(results);
-		else
-			{/** TODO */ }
-			
-		// project 
+		else {
+			groups = null;
+			/** TODO */
+		}
+
+		// project
 		List<Map<String, Object>> list = new GroupResultProjector().project(groups, projections);
-		
+
 		// order if exist
-		if (this.orderBy != null) 
+		if (this.orderBy != null)
 			return this.orderBy.order(list);
-		 else
+		else
 			return list;
 	}
 

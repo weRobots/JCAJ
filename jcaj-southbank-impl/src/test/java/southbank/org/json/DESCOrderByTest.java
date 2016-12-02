@@ -56,5 +56,4 @@ public class DESCOrderByTest {
 
 		list = new GroupResultProjector().project(groups, projections);
 	}
-
 }

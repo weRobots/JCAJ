@@ -29,11 +29,12 @@ public class InnerJoin implements Join {
 		List<Map<String, Object>> mergeResults = new ArrayList<Map<String, Object>>();
 
 		// get left criteria result set
-		try {
 
-			// retrieve table results mapping with the lhs and rhs properties
-			Map<Object, List<Map<String, Object>>> lhsResults = tableReader.mapToAProperty(c.getTable(),
-					this.propertyL);
+		// retrieve table results mapping with the lhs and rhs properties
+		Map<Object, List<Map<String, Object>>> lhsResults;
+		try {
+			lhsResults = tableReader.mapToAProperty(c.getTable(), this.propertyL);
+
 			Map<Object, List<Map<String, Object>>> rhsResults = tableReader.mapToAProperty(this.table, this.propertyR);
 
 			// merge starts
@@ -55,8 +56,11 @@ public class InnerJoin implements Join {
 				}
 			}
 
-		} catch (IOException | ParseException e) {
-			//
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

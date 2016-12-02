@@ -1,12 +1,11 @@
 package southbank.org.json;
 
 import java.util.List;
-
-import org.json.simple.JSONObject;
+import java.util.Map;
 
 public interface Criteria {
 
-	public List<JSONObject> getResult();
+	public List<Map<String, Object>> getResult();
 
 	public void createJoin(final Join join);
 
