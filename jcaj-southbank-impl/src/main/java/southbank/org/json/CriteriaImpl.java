@@ -45,6 +45,7 @@ public class CriteriaImpl implements Criteria {
 			groups = this.groupBy.group(results);
 			
 		// project 
+		List<Map<String, Object>> notOrderedList = new GroupResultProjector().project(groups, projections);
 		
 		
 		return null;

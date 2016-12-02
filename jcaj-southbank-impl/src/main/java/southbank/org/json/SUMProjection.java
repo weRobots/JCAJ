@@ -42,4 +42,24 @@ public class SUMProjection implements Projection {
 		return projectionResults;
 	}
 
+	@Override
+	public GroupProjectionResult project(GroupResult group) {
+		if (group == null)
+			return null;
+
+		Double sum = 0.0D;
+
+		for (Map<String, Object> groupRow : group.value()) {
+			Object object = groupRow.get(this.property);
+
+			if (object == null || !(object instanceof Double))
+				throw new UnsupportedOperationException(
+						"cannot perform SUM aggregation on null property for " + this.property);
+
+			sum += (Double) object;
+		}
+
+		return new GroupProjectionResultImpl(group.getGroupedProperty(), group.getGroupedValue(), this.displayKey, sum);
+	}
+
 }

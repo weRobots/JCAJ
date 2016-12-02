@@ -50,4 +50,33 @@ public class PropertyProjection implements Projection {
 
 	}
 
+	@Override
+	public GroupProjectionResult project(GroupResult group) {
+
+		if (group == null)
+			return null;
+
+		Double maxID = 0.0D;
+		Object object = null;
+
+		// find the last id of table
+		String table = this.property.split("\\.")[0];
+
+		for (Map<String, Object> groupRow : group.value()) {
+			Object currentObject = groupRow.get(this.property);
+			Object id = groupRow.get(table + "._id");
+
+			if (currentObject == null)
+				throw new UnsupportedOperationException(
+						"cannot perform property projection on null property for " + this.property);
+
+			if ((Double) id > maxID)
+				object = currentObject;
+
+		}
+
+		return new GroupProjectionResultImpl(group.getGroupedProperty(), group.getGroupedValue(), this.displayKey,
+				object);
+	}
+
 }
