@@ -1,9 +1,8 @@
 package southbank.org.json;
 
 import java.util.List;
-import java.util.Map;
 
-public interface Projection<T> {
+public interface Projection {
 
-	public List<Map<String, Object>> project(T results);
+	public List<GroupProjectionResult> project(List<GroupResult> results);
 }

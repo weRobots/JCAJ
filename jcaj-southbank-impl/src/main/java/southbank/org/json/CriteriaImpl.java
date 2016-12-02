@@ -37,12 +37,15 @@ public class CriteriaImpl implements Criteria {
 		// apply given restrictions
 		results = new RestrictionFilter().filter(results, this.restrictions);
 		
+		// groups if defined
+		List<GroupResult> groups;
+		
 		// apply group by
 		if (this.groupBy != null) 
-			Map<Object, List<Map<String, Object>>> groupedResults = 
+			groups = this.groupBy.group(results);
+			
+		// project 
 		
-		
-		// 
 		
 		return null;
 	}
