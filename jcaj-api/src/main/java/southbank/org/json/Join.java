@@ -1,10 +1,15 @@
 package southbank.org.json;
 
 import java.util.List;
-
-import org.json.JSONObject;
+import java.util.Map;
 
 public interface Join {
 
-	public List<JSONObject> join(Criteria c, String propertyL, String table, String propertyR);
+	/**
+	 * return the merged results as a single map.
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public List<Map<String, Object>> join(Criteria c);
 }
