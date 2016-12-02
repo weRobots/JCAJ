@@ -1,4 +1,4 @@
-package southbank.org.json.util;
+package southbank.org.json;
 
 import java.util.List;
 import java.util.Map;

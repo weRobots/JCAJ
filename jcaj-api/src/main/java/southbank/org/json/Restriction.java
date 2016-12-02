@@ -1,10 +1,8 @@
 package southbank.org.json;
 
-import java.util.List;
-
-import org.json.simple.JSONObject;
+import java.util.Map;
 
 public interface Restriction {
 
-	public List<JSONObject> apply(List<JSONObject> list);
+	public boolean apply(Map<String, Object> result);
 }

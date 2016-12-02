@@ -2,8 +2,12 @@ package southbank.org.json;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
+
+import southbank.org.json.util.RestrictionFilter;
+import southbank.org.json.util.TableReader;
 
 public class CriteriaImpl implements Criteria {
 
@@ -14,16 +18,32 @@ public class CriteriaImpl implements Criteria {
 	private GroupBy groupBy;
 	private OrderBy orderBy;
 	private List<Projection> projections;
+	private List<Restriction> restrictions;
 
 	private CriteriaImpl(String table) {
 		this.table = table;
 	}
 
 	@Override
-	public List<JSONObject> getResult() {
-		// if join exist get intersect by joining two tables
-		List<JSONObject> results;
+	public List<Map<String, Object>> getResult() {
+		List<Map<String, Object>> results;
 
+		// if join exist get intersect by joining two tables
+		if (this.join != null)
+			results = this.join.join(this);
+		else
+			results = new TableReader().fullRead(this.table);
+
+		// apply given restrictions
+		results = new RestrictionFilter().filter(results, this.restrictions);
+		
+		// apply group by
+		if (this.groupBy != null) 
+			Map<Object, List<Map<String, Object>>> groupedResults = 
+		
+		
+		// 
+		
 		return null;
 	}
 
@@ -57,5 +77,14 @@ public class CriteriaImpl implements Criteria {
 	@Override
 	public String getTable() {
 		return this.table;
+	}
+
+	@Override
+	public void addRestriction(Restriction restriction) {
+		if (this.restrictions == null)
+			this.restrictions = new ArrayList<Restriction>();
+
+		this.restrictions.add(restriction);
+
 	}
 }

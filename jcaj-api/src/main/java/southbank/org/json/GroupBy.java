@@ -7,5 +7,5 @@ import org.json.simple.JSONObject;
 
 public interface GroupBy {
 
-	public Map<JSONObject, List<JSONObject>> group(List<JSONObject> list);
+	public Map<Object, List<Map<String, Object>>> group(List<Map<String, Object>> list);
 }

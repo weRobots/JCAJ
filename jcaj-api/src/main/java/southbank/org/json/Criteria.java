@@ -16,5 +16,7 @@ public interface Criteria {
 
 	public void addProjection(final Projection projection);
 
+	public void addRestriction(final Restriction restriction);
+
 	public String getTable();
 }
