@@ -19,6 +19,14 @@ public class TableReaderTest {
 		List<Map<String, Object>> fullRead = tableReader.fullRead("t1f10");
 		Assert.assertEquals(10, fullRead.size());
 
+		// check every column with table.column_name format
+		for (Map<String, Object> map : fullRead) {
+			Assert.assertTrue(map.containsKey("t1f10._id"));
+			Assert.assertTrue(map.containsKey("t1f10.x"));
+			Assert.assertTrue(map.containsKey("t1f10.y"));
+			Assert.assertTrue(map.containsKey("t1f10.z"));
+		}
+
 		fullRead = tableReader.fullRead("t1");
 		Assert.assertEquals(20000, fullRead.size());
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import southbank.org.json.util.RestrictionFilter;
+import southbank.org.json.util.TableReader;
 
 public class CriteriaImpl implements Criteria {
 
@@ -29,8 +30,7 @@ public class CriteriaImpl implements Criteria {
 		if (this.join != null)
 			results = this.join.join(this);
 		else {
-			results = null;
-			/** TODO */
+			results = new TableReader().fullRead(this.table);
 		}
 
 		// apply given restrictions

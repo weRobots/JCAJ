@@ -30,26 +30,42 @@ public class TableReader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public List<Map<String, Object>> fullRead(String table) throws FileNotFoundException, IOException, ParseException {
+	public List<Map<String, Object>> fullRead(String table) {
 
-		JsonParser jsonParser = getJsonParser(getFileInputStream(table));
 		List<Map<String, Object>> elements = new ArrayList<Map<String, Object>>();
 
-		while (true) {
-			JsonToken nextToken = jsonParser.nextToken();
+		try {
+			JsonParser jsonParser = getJsonParser(getFileInputStream(table));
 
-			// break if end
-			if (nextToken == null || nextToken == JsonToken.END_ARRAY) {
-				break;
+			while (true) {
+				JsonToken nextToken;
+
+				nextToken = jsonParser.nextToken();
+
+				// break if end
+				if (nextToken == null || nextToken == JsonToken.END_ARRAY) {
+					break;
+				}
+
+				Map<String, Object> tableRow = jsonParser.readValueAs(new TypeReference<Map<String, Object>>() {
+				});
+				Map<String, Object> propertyMapper = new HashMap<String, Object>();
+
+				// create a new json without the joint property replacing the
+				// key as table.key
+				for (Entry<String, Object> entry : tableRow.entrySet()) {
+					propertyMapper.put(table + "." + entry.getKey(), entry.getValue());
+				}
+
+				elements.add(propertyMapper);
+
 			}
 
-			elements.add(jsonParser.readValueAs(new TypeReference<Map<String, Object>>() {
-			}));
-
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		return elements;
-
 	}
 
 	/**
@@ -67,48 +83,53 @@ public class TableReader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public Map<Object, List<Map<String, Object>>> mapToAProperty(String table, String property)
-			throws FileNotFoundException, IOException, ParseException {
+	public Map<Object, List<Map<String, Object>>> mapToAProperty(String table, String property) {
 
-		JsonParser jsonParser = getJsonParser(getFileInputStream(table));
 		Map<Object, List<Map<String, Object>>> elements = new HashMap<Object, List<Map<String, Object>>>();
+		try {
+			JsonParser jsonParser = getJsonParser(getFileInputStream(table));
 
-		while (true) {
-			JsonToken nextToken = jsonParser.nextToken();
+			while (true) {
+				JsonToken nextToken;
 
-			// break if end
-			if (nextToken == null || nextToken == JsonToken.END_ARRAY) {
-				break;
-			}
+				nextToken = jsonParser.nextToken();
 
-			// table row
-			Map<String, Object> tableRow = jsonParser.readValueAs(new TypeReference<Map<String, Object>>() {
-			});
-
-			// property value
-			Object value = tableRow.get(property);
-
-			// if value exist need to add to the map
-			if (value != null) {
-
-				Map<String, Object> propertyMapper = new HashMap<String, Object>();
-
-				// create a new json without the joint property replacing the
-				// key as table.key
-				for (Entry<String, Object> entry : tableRow.entrySet()) {
-					if (entry.getKey() != property)
-						propertyMapper.put(table + "." + entry.getKey(), entry.getValue());
+				// break if end
+				if (nextToken == null || nextToken == JsonToken.END_ARRAY) {
+					break;
 				}
 
-				if (!elements.containsKey(value))
-					elements.put(value, new ArrayList<Map<String, Object>>());
+				// table row
+				Map<String, Object> tableRow = jsonParser.readValueAs(new TypeReference<Map<String, Object>>() {
+				});
 
-				elements.get(value).add(propertyMapper);
+				// property value
+				Object value = tableRow.get(property);
+
+				// if value exist need to add to the map
+				if (value != null) {
+
+					Map<String, Object> propertyMapper = new HashMap<String, Object>();
+
+					// create a new json without the joint property replacing
+					// the
+					// key as table.key
+					for (Entry<String, Object> entry : tableRow.entrySet()) {
+						if (entry.getKey() != property)
+							propertyMapper.put(table + "." + entry.getKey(), entry.getValue());
+					}
+
+					if (!elements.containsKey(value))
+						elements.put(value, new ArrayList<Map<String, Object>>());
+
+					elements.get(value).add(propertyMapper);
+				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		return elements;
-
 	}
 
 	private JsonParser getJsonParser(InputStream in) throws JsonParseException, IOException {
@@ -118,7 +139,6 @@ public class TableReader {
 		objectMapper.configure(Feature.AUTO_CLOSE_SOURCE, true);
 
 		return jsonFactory.createParser(in);
-
 	}
 
 	private InputStream getFileInputStream(String fileName) {

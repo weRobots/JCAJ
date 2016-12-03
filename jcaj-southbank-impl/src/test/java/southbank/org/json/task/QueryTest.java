@@ -61,22 +61,27 @@ public class QueryTest {
 		try {
 			json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		// pretty print
 		System.out.println(json);
-
 	}
 
 	private void save(List<Map<String, Object>> result) {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			mapper.writeValue(new File("/result.json"), result);
+
+			File file = new File("target/result.json");
+
+			if (!file.exists())
+				file.createNewFile();
+
+			// write the result
+			mapper.writeValue(file, result);
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
