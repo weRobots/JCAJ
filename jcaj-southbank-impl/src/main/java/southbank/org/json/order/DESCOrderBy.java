@@ -1,8 +1,10 @@
-package southbank.org.json;
+package southbank.org.json.order;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import southbank.org.json.order.OrderBy;
 
 public class DESCOrderBy implements OrderBy {
 

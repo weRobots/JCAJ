@@ -1,7 +1,9 @@
-package southbank.org.json;
+package southbank.org.json.join;
 
 import java.util.List;
 import java.util.Map;
+
+import southbank.org.json.Criteria;
 
 public interface Join {
 

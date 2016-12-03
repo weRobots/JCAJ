@@ -1,13 +1,19 @@
 package southbank.org.json;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import southbank.org.json.join.InnerJoin;
+import southbank.org.json.order.DESCOrderBy;
+import southbank.org.json.projection.Projection;
+import southbank.org.json.projection.PropertyProjection;
+import southbank.org.json.projection.ResultsProjector;
+import southbank.org.json.projection.SUMProjection;
 
 public class DESCOrderByTest {
 
@@ -54,6 +60,6 @@ public class DESCOrderByTest {
 		projections.add(sumt1);
 		projections.add(sumt2);
 
-		list = new GroupResultProjector().project(groups, projections);
+		list = new ResultsProjector().projectGroup(groups, projections);
 	}
 }

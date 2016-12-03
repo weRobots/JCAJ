@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import southbank.org.json.Criteria;
 import southbank.org.json.CriteriaImpl;
-import southbank.org.json.InnerJoin;
+import southbank.org.json.join.InnerJoin;
 
 public class InnerJoinTest {
 

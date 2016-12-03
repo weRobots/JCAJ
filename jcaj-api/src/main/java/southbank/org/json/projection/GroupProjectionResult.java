@@ -1,4 +1,4 @@
-package southbank.org.json;
+package southbank.org.json.projection;
 
 public interface GroupProjectionResult {
 

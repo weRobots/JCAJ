@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import southbank.org.json.join.InnerJoin;
+
 public class GroupByImplTest {
 
 	GroupBy groupBy;

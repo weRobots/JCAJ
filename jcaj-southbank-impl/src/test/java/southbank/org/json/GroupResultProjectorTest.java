@@ -8,6 +8,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import southbank.org.json.join.InnerJoin;
+import southbank.org.json.projection.ResultsProjector;
+import southbank.org.json.projection.Projection;
+import southbank.org.json.projection.PropertyProjection;
+import southbank.org.json.projection.SUMProjection;
+
 public class GroupResultProjectorTest {
 
 	List<GroupResult> groups;
@@ -22,7 +28,7 @@ public class GroupResultProjectorTest {
 		projections.add(sumt1);
 		projections.add(sumt2);
 
-		List<Map<String, Object>> list = new GroupResultProjector().project(groups, projections);
+		List<Map<String, Object>> list = new ResultsProjector().projectGroup(groups, projections);
 
 		Assert.assertEquals(4, list.size());
 

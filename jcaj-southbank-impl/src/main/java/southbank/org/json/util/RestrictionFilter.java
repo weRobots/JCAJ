@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import southbank.org.json.Restriction;
+import southbank.org.json.restriction.Restriction;
 
 public class RestrictionFilter {
 

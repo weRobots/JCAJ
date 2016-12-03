@@ -1,8 +1,12 @@
-package southbank.org.json;
+package southbank.org.json.projection;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import southbank.org.json.GroupResult;
+import southbank.org.json.projection.GroupProjectionResult;
+import southbank.org.json.projection.Projection;
 
 public class SUMProjection implements Projection {
 

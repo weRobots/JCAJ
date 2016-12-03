@@ -1,6 +1,5 @@
 package southbank.org.json.util;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -8,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.json.simple.parser.ParseException;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -25,10 +22,7 @@ public class TableReader {
 	 * Read all JSON objects as list of Map.
 	 * 
 	 * @param table
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ParseException
+	 * @return null if no table found.
 	 */
 	public List<Map<String, Object>> fullRead(String table) {
 
@@ -78,10 +72,7 @@ public class TableReader {
 	 * 
 	 * @param table
 	 * @param property
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ParseException
+	 * @return null if no table found.
 	 */
 	public Map<Object, List<Map<String, Object>>> mapToAProperty(String table, String property) {
 
@@ -112,8 +103,7 @@ public class TableReader {
 					Map<String, Object> propertyMapper = new HashMap<String, Object>();
 
 					// create a new json without the joint property replacing
-					// the
-					// key as table.key
+					// the key as table.key
 					for (Entry<String, Object> entry : tableRow.entrySet()) {
 						if (entry.getKey() != property)
 							propertyMapper.put(table + "." + entry.getKey(), entry.getValue());

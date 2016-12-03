@@ -1,4 +1,6 @@
-package southbank.org.json;
+package southbank.org.json.projection;
+
+import southbank.org.json.projection.GroupProjectionResult;
 
 public class GroupProjectionResultImpl implements GroupProjectionResult {
 

@@ -6,6 +6,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import southbank.org.json.join.InnerJoin;
+import southbank.org.json.projection.GroupProjectionResult;
+import southbank.org.json.projection.Projection;
+import southbank.org.json.projection.PropertyProjection;
+
 public class PropertyProjectionTest {
 
 	List<GroupResult> groups;

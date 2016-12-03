@@ -26,13 +26,19 @@
       <scope>compile</scope>
     </dependency>
     
-    <!-- jackson to read file stream  -->
+    <!-- JSON-SIMPLE  -->
+    <dependency>
+	    <groupId>com.googlecode.json-simple</groupId>
+    	<artifactId>json-simple</artifactId>
+    	<version>1.1.1</version>
+	</dependency>
+    
+    <!-- JACKSON to read file stream  -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-core</artifactId>
 	    <version>2.8.1</version>
-	</dependency>
-	
+	</dependency>	
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-databind</artifactId>

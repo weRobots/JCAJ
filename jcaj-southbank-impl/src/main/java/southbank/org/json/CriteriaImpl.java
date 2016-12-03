@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import southbank.org.json.join.Join;
+import southbank.org.json.order.OrderBy;
+import southbank.org.json.projection.ResultsProjector;
+import southbank.org.json.projection.Projection;
+import southbank.org.json.restriction.Restriction;
 import southbank.org.json.util.RestrictionFilter;
 import southbank.org.json.util.TableReader;
 
@@ -48,7 +53,7 @@ public class CriteriaImpl implements Criteria {
 		}
 
 		// project
-		List<Map<String, Object>> list = new GroupResultProjector().project(groups, projections);
+		List<Map<String, Object>> list = new ResultsProjector().projectGroup(groups, projections);
 
 		// order if exist
 		if (this.orderBy != null)

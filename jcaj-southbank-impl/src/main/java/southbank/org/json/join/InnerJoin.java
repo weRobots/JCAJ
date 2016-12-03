@@ -1,10 +1,11 @@
-package southbank.org.json;
+package southbank.org.json.join;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import southbank.org.json.Criteria;
 import southbank.org.json.util.TableReader;
 
 public class InnerJoin implements Join {
@@ -55,5 +56,4 @@ public class InnerJoin implements Join {
 
 		return mergeResults;
 	}
-
 }

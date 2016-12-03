@@ -1,6 +1,8 @@
-package southbank.org.json;
+package southbank.org.json.projection;
 
 import java.util.List;
+
+import southbank.org.json.GroupResult;
 
 public interface Projection {
 

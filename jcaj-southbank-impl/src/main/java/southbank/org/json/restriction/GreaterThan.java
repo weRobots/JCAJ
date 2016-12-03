@@ -1,6 +1,8 @@
-package southbank.org.json;
+package southbank.org.json.restriction;
 
 import java.util.Map;
+
+import southbank.org.json.restriction.Restriction;
 
 public class GreaterThan implements Restriction {
 

@@ -12,12 +12,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import southbank.org.json.Criteria;
 import southbank.org.json.CriteriaImpl;
-import southbank.org.json.DESCOrderBy;
-import southbank.org.json.GreaterThan;
 import southbank.org.json.GroupByImpl;
-import southbank.org.json.InnerJoin;
-import southbank.org.json.PropertyProjection;
-import southbank.org.json.SUMProjection;
+import southbank.org.json.join.InnerJoin;
+import southbank.org.json.order.DESCOrderBy;
+import southbank.org.json.projection.PropertyProjection;
+import southbank.org.json.projection.SUMProjection;
+import southbank.org.json.restriction.GreaterThan;
 
 public class QueryTest {
 

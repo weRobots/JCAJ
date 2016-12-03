@@ -7,8 +7,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import southbank.org.json.GreaterThan;
-import southbank.org.json.Restriction;
+import southbank.org.json.restriction.GreaterThan;
+import southbank.org.json.restriction.Restriction;
 
 public class FilterRestrictionTest {
 
