@@ -28,7 +28,7 @@ mvn test
 
 ###### see the test class src/test _southbank.org.json.task.QueryTest_
 standard out will print the main query result.
-result.json file wille be created in target/ 
+<br>**result.json** file wille be created in **target/** 
 
 
 
